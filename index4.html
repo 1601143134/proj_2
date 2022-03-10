@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tab1 {
+            margin: 20px auto;
+        }
+
+        #tab2 {
+            margin: 30px auto;
+        }
+    </style>
+    <script>
+        $(function () {
+            //1.添加
+            $('#addbtn').click(function () {
+
+                //收集数据
+                var $name = $('#name')
+                var $age = $('#age')
+                var $salary = $('#salary')
+
+                var name = $name.val()
+                var age = $age.val()
+                var salary = $salary.val()
+
+                //创建tr
+                $('<tr></tr>')  //实现连续添加--!!!!知识点
+                    .append('<td>'+name+'</td>')    
+                    .append('<td>'+age+'</td>')    
+                    .append('<td>'+salary+'</td>')
+                    .append('<td><a href="deleteEmp?id="+Date.now()+>delete</a></td>')
+                    //id="+Date.now()+ 标识：用于传给服务器删除对应数据
+                    .appendTo('#tab1>tbody')
+                    //  用事件委派把删除函数委托给tbody
+                    // .find('a')   //给新添加的a标签添加删除函数 find-查找后代元素
+                    // .click(deleteClick)  
+
+                //清楚输入
+                $name.val('')  
+                $age.val('')  
+                $salary.val('')  
+
+            })
+
+            //2.删除
+            // $('tbody a').click(deleteClick)
+            $('tbody').delegate('a','click',deleteClick)
+
+            function deleteClick() { 
+                //找到a标签的祖先tr   $(this)要封装成jQuery对象，不能像js一样直接使用
+               var $tr = $(this).parent().parent()
+               //获取姓名
+               var name = $tr.children(':first').html()
+                if(confirm('确定删除'+name+'吗？')){
+                    $tr.remove()
+                }
+                return false
+            }
+
+        })
+    </script>
+</head>
+
+<body>
+    <table id="tab1" border="1" cellspacing="0" cellpadding="0">
+        <thead>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>工资</th>
+            <th>删除</th>
+
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tom</td>
+                <td>20</td>
+                <td>1500</td>
+                <td>
+                    <a href="#">delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Mike</td>
+                <td>20</td>
+                <td>2500</td>
+                <td>
+                    <a href="#">delete</a>
+                </td>
+            </tr>
+
+        </tbody>
+
+
+    </table>
+
+    <table id="tab2">
+        <tr>
+            <td>
+                姓名：<input type="text" name="" id="name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                年龄：<input type="text" name="" id="age">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                工资：<input type="text" name="" id="salary">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="" id="addbtn" value="提交">
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

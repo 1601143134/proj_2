@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery.js"></script>
+    <!-- <link rel="stylesheet" href="../js/app.js"> -->
+    <script src="../js/app.js"></script>
+    <!-- 
+
+        去Hbuilder 看 VScode不兼容
+     -->
+
+
+    <style>
+        .container{
+            /* overflow: hidden; */
+            width: 640px;
+            height: 427px;
+            margin: 0 auto;
+            position: relative;
+            background-color: aqua;
+        }
+        .list{
+            position: absolute;
+            width: 3250px;
+            height: 427px;
+            left: -650px;
+        }
+        img{
+            float: left;
+            margin-right: 10px;
+        }
+        a{
+            display: block;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, .3);
+            color: white;
+            line-height: 50px;
+            top: 188.5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 25px;
+        }
+        a:hover{
+            background-color: rgba(0, 0, 0, .6);
+        }
+        
+        #ne{
+            right: 0;
+        }
+        .point{
+            position: absolute;
+            left: 285px;
+            top: 400px;
+        }
+         span{
+           
+            float: left;
+            width: 10px;height: 10px;background-color: rgb(20, 20, 19);
+            border: 5px solid rgb(223, 215, 215);
+            border-radius: 50%;
+            margin: 0 5px;
+            
+        }
+        .on{
+            width: 10px;height: 10px;background-color: orange;
+            border: 5px solid rgb(223, 215, 215);
+            border-radius: 50%;
+            margin: 0 5px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="list">
+            <img src="../img/4.jpg" alt="3">
+            <img src="../img/1.webp" alt="1">
+            <img src="../img/2.jpg" alt="2">
+            <img src="../img/4.jpg" alt="3">
+            <img src="../img/1.webp" alt="1">
+
+        </div>
+        <div class="point">
+            <span index="1" class="on"></span>
+            <span index="2"></span>
+            <span index="3"></span>
+            
+        </div>
+        <a href="#" id="pre">＜</a>
+        <a href="#" id="ne">＞</a>
+    </div>
+</body>
+</html>

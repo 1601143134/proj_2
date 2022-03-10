@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery.js"></script>
+</head>
+<body>
+   
+    <input type="checkbox" name="items" value="足球">足球
+    <input type="checkbox" name="items" value="乒乓球">乒乓球
+    <input type="checkbox" name="items" value="羽毛球">羽毛球
+    <input type="checkbox" id="checkall">全选/全不选
+    <br>
+    <input type="button" id="all" value="全选">
+    <input type="button" id="notall" value="全不选">
+    <input type="button" id="reall" value="反选">
+    <input type="button" id="sub" value="提交">
+
+    <script>
+        var $all = $('#all')
+        var $notall = $('#notall')
+        var $checkall = $('#checkall')
+        var $reall = $('#reall')
+        var $sub = $('#sub')
+        var $items = $(':checkbox[name=items]')
+        //全选
+        $all.click(function () {  
+            $items.prop('checked',true)
+            $checkall.prop('checked',true)
+        })
+        //全不选
+        $notall.click(function () {  
+            $items.prop('checked',false)
+            $checkall.prop('checked',false)
+        })
+        //反选
+        $reall.click(function () {  
+            $items.each(function () {  
+                this.checked = !this.checked
+            })
+            //根据$items未选中的长度来设置$cheackall的属性值         
+            $checkall.prop('checked',$items.not(':checked').length===0)
+        })
+        //提交
+        $sub.click(function () {  
+            $items.filter(':checked').each(function () {  
+                alert(this.value)
+            })
+        })
+        //全选/全不选---$items.not(':checked').length===0  返回的是伪数组对象
+        $items.click(function () {  
+            $checkall.prop('checked',$items.not(':checked').length===0)
+        })
+
+
+    </script>
+
+</body>
+</html>
